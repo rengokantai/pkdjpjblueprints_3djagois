@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
-from data_collector.models import DataPoint
+from django.views.generic import TemplateView,ListView
+from data_collector.models import DataPoint,Alert
 
 # Create your views here.
 
@@ -27,3 +27,7 @@ class StatusView(TemplateView):
  u'c': {u'2': <DataPoint: DataPoint for c. 2 = 0.85>,
             u'1': <DataPoint: DataPoint for c. 1 = 9.0>}}
                 """
+
+class AlertListView(ListView):
+    template_name = 'alert_list.html'
+    model = Alert

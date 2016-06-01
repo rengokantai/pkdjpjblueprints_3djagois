@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <h1>alerts</h1>
+    {% if object_list %}
+    <table>
+        <tbody>
+        <tr>
+            <th>data type</th>
+            <th>min value</th>
+            <th>max value</th>
+            <th>node name</th>
+            <th>is active</th>
+        </tr>
+        {% for alert in object_list %}
+
+                <tr>
+                    <td>{{ alert.data_type }}</td>
+                    <td>{{ alert.min_value }}</td>
+                    <td>{{ alert.max_value }}</td>
+                    <td>{{ alert.node_name }}</td>
+                    <td>{{ alert.is_active }}</td>
+                </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    no alerts
+    {% endif %}
+{% endblock %}
