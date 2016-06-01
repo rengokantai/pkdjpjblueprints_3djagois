@@ -8,3 +8,6 @@ class DataPoint(models.Model):
     data_type = models.CharField(max_length=100)
     data_value=models.FloatField()
 
+    def __str__(self):
+        return 'DataPoint fot {}. {} ={}'.format(self.node_name,self.data_type,self.data_value)
+
