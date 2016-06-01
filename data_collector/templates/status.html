@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{#{% load humanize %}#}
+{% load humanize %}
 
 {% block content %}
     <h1>status</h1>
@@ -17,7 +17,7 @@
                     <td>{% if forloop.first %}{{ node_name }}{% endif %}</td>
                     <td>{{ data_type }}</td>
                     <td>{{ data_point.data_value }}</td>
-                    <td>{{ data_point.datetime }}</td>
+                    <td>{{ data_point.datetime|naturaltime }}</td>
                 </tr>
                 {% endfor %}
         {% endfor %}
