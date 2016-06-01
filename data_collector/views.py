@@ -39,11 +39,11 @@ class NewAlertView(CreateView):
     model = Alert
     fields =  ['data_type','min_value','max_value','node_name','is_active']
     def get_success_url(self):
-        return reverse('alert_list')
+        return reverse('alerts_list')
 
 class EditAlertView(UpdateView):
     template_name = 'create_or_update_alert.html'
     model = Alert
     fields =  ['data_type','min_value','max_value','node_name','is_active']
     def get_success_url(self):
-        return reverse('alert_list')
+        return reverse('alerts_list')

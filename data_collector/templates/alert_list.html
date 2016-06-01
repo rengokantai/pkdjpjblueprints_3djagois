@@ -12,6 +12,7 @@
             <th>max value</th>
             <th>node name</th>
             <th>is active</th>
+            <th>action</th>
         </tr>
         {% for alert in object_list %}
 
@@ -21,6 +22,7 @@
                     <td>{{ alert.max_value }}</td>
                     <td>{{ alert.node_name }}</td>
                     <td>{{ alert.is_active }}</td>
+                    <td><a href="{% url 'alerts_edit' pk=alert.pk %}">edit</a></td>
                 </tr>
 
         {% endfor %}
@@ -29,4 +31,5 @@
     {% else %}
     no alerts
     {% endif %}
+    <p><a href="{% url 'alerts_new' %}">new</a></p>
 {% endblock %}
