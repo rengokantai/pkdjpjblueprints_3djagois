@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from data_collector.views import StatusView,AlertListView,NewAlertView,EditAlertView
+from data_collector.views import StatusView,AlertListView,NewAlertView,EditAlertView,DeleteAlertView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^alerts/$',AlertListView.as_view() ,name='alerts_list'),
     url(r'^alerts/new/$',NewAlertView.as_view() ,name='alerts_new'),
     url(r'^alerts/(?P<pk>\d+)/edit/$',EditAlertView.as_view() ,name='alerts_edit'),
+    url(r'^alerts/(?P<pk>\d+)/delete/$',DeleteAlertView.as_view() ,name='alerts_delete'),
 ]

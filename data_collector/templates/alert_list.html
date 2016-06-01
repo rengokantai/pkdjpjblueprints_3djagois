@@ -22,7 +22,7 @@
                     <td>{{ alert.max_value }}</td>
                     <td>{{ alert.node_name }}</td>
                     <td>{{ alert.is_active }}</td>
-                    <td><a href="{% url 'alerts_edit' pk=alert.pk %}">edit</a></td>
+                    <td><a href="{% url 'alerts_edit' pk=alert.pk %}">edit</a>&nbsp;<a href="{% url 'alerts_delete' pk=alert.pk %}">delete</a></td>
                 </tr>
 
         {% endfor %}

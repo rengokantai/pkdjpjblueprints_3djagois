@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView,CreateView,UpdateView
+from django.views.generic import TemplateView,ListView,CreateView,UpdateView,DeleteView
 from data_collector.models import DataPoint,Alert
 from django.core.urlresolvers import reverse
 
@@ -45,5 +45,11 @@ class EditAlertView(UpdateView):
     template_name = 'create_or_update_alert.html'
     model = Alert
     fields =  ['data_type','min_value','max_value','node_name','is_active']
+    def get_success_url(self):
+        return reverse('alerts_list')
+
+class DeleteAlertView(DeleteView):
+    template_name = 'delete_alert.html'
+    model=Alert
     def get_success_url(self):
         return reverse('alerts_list')
