@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView
+from django.views.generic import TemplateView,ListView,CreateView
 from data_collector.models import DataPoint,Alert
+from django.core.urlresolvers import reverse
+
 
 # Create your views here.
 
@@ -31,3 +33,10 @@ class StatusView(TemplateView):
 class AlertListView(ListView):
     template_name = 'alert_list.html'
     model = Alert
+
+class NewAlertView(CreateView):
+    template_name = 'create_or_update_alert.html'
+    model = Alert
+    fields =  ['data_type','min_value','max_value','node_name','is_active']
+    def get_success_url(self):
+        return reverse('alert_list')
