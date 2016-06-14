@@ -9,7 +9,7 @@ class DataPoint(models.Model):
     data_value=models.FloatField()
 
     def __str__(self):
-        return 'DataPoint fot {}. {} ={}'.format(self.node_name,self.data_type,self.data_value)
+        return 'DataPoint for {}. {} ={}'.format(self.node_name,self.data_type,self.data_value)
 
 
 class Alert(models.Model):

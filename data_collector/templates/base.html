@@ -16,6 +16,8 @@
 </head>
 
 <body>
+<li><a href="{% url 'status' %}">home</a></li>
+<li><a href="{% url 'alerts_list' %}">alerts</a></li>
     {% block content %}
     {% endblock %}
 </body>
