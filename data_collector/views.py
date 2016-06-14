@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView,CreateView,UpdateView,DeleteView
+from django.views.generic import TemplateView,ListView,CreateView,UpdateView,DeleteView,View
 from data_collector.models import DataPoint,Alert
 from django.core.urlresolvers import reverse
+
+##test remote connection
+from django.forms.models import modelform_factory
+from django.http.response import HttpResponse,HttpResponseBadRequest,HttpResponseForbidden
 
 
 # Create your views here.
@@ -70,3 +74,15 @@ class DeleteAlertView(DeleteView):
     model=Alert
     def get_success_url(self):
         return reverse('alerts_list')
+
+class RecordDataApiView(View):
+    def post(self, request, *args, **kwargs):
+        if request.META.get('HTTP_AUTH_SECRET')!='root':
+            return HttpResponseForbidden('incorrect key')
+        form_class = modelform_factory(DataPoint, fields=['node_name','data_type','data_value'])
+        form = form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse()
+        else:
+            return HttpResponseBadRequest()

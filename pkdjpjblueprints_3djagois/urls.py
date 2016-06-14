@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from data_collector.views import StatusView,AlertListView,NewAlertView,EditAlertView,DeleteAlertView
+from data_collector.views import StatusView,AlertListView,NewAlertView,EditAlertView,DeleteAlertView,RecordDataApiView
+
+from django.views.decorators.csrf import csrf_exempt
+
+# new for remote connection
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -24,4 +28,5 @@ urlpatterns = [
     url(r'^alerts/new/$',NewAlertView.as_view() ,name='alerts_new'),
     url(r'^alerts/(?P<pk>\d+)/edit/$',EditAlertView.as_view() ,name='alerts_edit'),
     url(r'^alerts/(?P<pk>\d+)/delete/$',DeleteAlertView.as_view() ,name='alerts_delete'),
+    url(r'^record/$',csrf_exempt(RecordDataApiView.as_view()) ,name='record_data'),
 ]
